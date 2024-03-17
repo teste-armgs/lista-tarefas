@@ -10,26 +10,20 @@ class ListTask:
                 if int(priori) < int(t['prioridade']):
                     self.tarefas.insert(i, {'tarefa': tarefa, 'prioridade': priori, 'status': status})
                     return
-                elif int(priori) == int(t['prioridade']):
-                    self.tarefas.insert(i+1, {'tarefa': tarefa, 'prioridade': priori, 'status': status})
-                    return
+            self.tarefas.insert(i+1, {'tarefa': tarefa, 'prioridade': priori, 'status': status})
 
     def finalizar(self, indice_tarefa):
         if 0 <= indice_tarefa < len(self.tarefas):
             self.tarefas[indice_tarefa]['status'] = 'Concluído'
 
     def filtrar(self, priori):
-        copia = self.tarefas.copy
-        temp = []
+        copia = self.tarefas.copy()
         if not copia:
             print("Nenhuma tarefa encontrada.")
         elif priori.lower() == '4':
             return copia
         elif priori in ['1', '2', '3']:
-            for tarefa in copia:
-                if tarefa['prioridade'].lower().strip() == priori.lower().strip():
-                    temp.append(tarefa)
-            return temp
+            return [tarefa for tarefa in copia if tarefa['prioridade'].lower().strip() == priori.lower().strip()]
         else:
             print("Opção invalida")
             return []

@@ -17,13 +17,14 @@ class Test_tarefas(unittest.TestCase):
         self.list_task.adicionar("Tarefa de alta prioridade", "1", "Pendente")
         self.list_task.adicionar("Tarefa de baixa prioridade", "3", "Pendente")
         self.list_task.adicionar("Tarefa de média prioridade", "2", "Pendente")
+        self.list_task.adicionar("Tarefa2 de alta prioridade", "1", "Pendente")
 
         alta_prioridade = self.list_task.filtrar('1')
-        self.assertEqual(len(alta_prioridade), 1)
+        self.assertEqual(len(alta_prioridade), 2)
         self.assertEqual(alta_prioridade[0]['prioridade'], '1')
 
         todas_as_prioridades = self.list_task.filtrar('4')
-        self.assertEqual(len(todas_as_prioridades), 3)
+        self.assertEqual(len(todas_as_prioridades), 4)
 
     def test_concluir_terefa(self):
         self.list_task.adicionar("Tarefa de teste", "2", "Pendente")
