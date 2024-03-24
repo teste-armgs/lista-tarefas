@@ -21,7 +21,7 @@ def main():
         elif opcao == '2':
             list_task.exibir('4')
             indice_tarefa = int(input("Digite o índice da tarefa a marcar como concluída: "))
-            list_task.finalizar(indice_tarefa -1)
+            list_task.finalizar(indice_tarefa)
             
         elif opcao == '3':
             priori = input("Digite a prioridade para exibir (1: Alta/2: Média/3: Baixa/4: Todas): ")
