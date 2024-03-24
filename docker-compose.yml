@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  tarefas:
+    build: ./app/Dockerfile
+    depends_on:
+      - mysql
+    environment:
+      - MYSQL_HOST=mysql
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=
+      - MYSQL_DB=dblista_tarefa
+
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD:
+      MYSQL_DATABASE: dblista_tarefa
+    volumes:
+      - ./dblista_tarefa.sql:/docker-entrypoint-initdb.d/init.sql
