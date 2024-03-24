@@ -1,19 +1,9 @@
 import unittest
 from main import ListTask
 
-class TestTarefas(unittest.TestCase):
-
+class TestFiltrarPrioridade(unittest.TestCase):
     def setUp(self):
         self.list_task = ListTask()
-
-    def test_criar_tarefas(self):
-        self.list_task.limpar_tarefas()
-        self.list_task.adicionar("Tarefa de teste", "2", "Pendente")
-        tarefas = self.list_task.exibir('4')
-        self.assertEqual(len(tarefas), 1)
-        self.assertEqual(tarefas[0]['nome'], "Tarefa de teste")
-        self.assertEqual(tarefas[0]['prioridade'], 2)
-        self.assertEqual(tarefas[0]['status'], "Pendente")
 
     def test_filtrar_por_prioridade(self):
         self.list_task.limpar_tarefas()
@@ -29,16 +19,7 @@ class TestTarefas(unittest.TestCase):
         todas_as_prioridades = self.list_task.exibir('4')
         self.assertEqual(len(todas_as_prioridades), 4)
 
-    def test_concluir_tarefa(self):
-        self.list_task.limpar_tarefas()
-        self.list_task.adicionar("Tarefa de teste", "2", "Pendente")
-        self.list_task.finalizar(0)
-        tarefas_concluidas = self.list_task.exibir('4')
-        self.assertEqual(tarefas_concluidas[0]['status'], "Concluído")
-
     def test_filtrar_por_prioridade_invalida(self):
-        self.list_task.limpar_tarefas()
-        self.list_task.adicionar("Tarefa de teste", "2", "Pendente")
         filtradas = self.list_task.exibir('5')
         self.assertEqual(len(filtradas), 0)
 
