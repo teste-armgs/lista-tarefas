@@ -41,7 +41,7 @@ class ListTask:
 
     def finalizar(self, indice_tarefa):
         try:
-            sql = "UPDATE tarefas SET status = 'Concluído' WHERE idtarefa = %s"
+            sql = "UPDATE tarefas SET status = 'Concluído' WHERE idtarefa = (SELECT idtarefa FROM tarefas ORDER BY prioridade ASC LIMIT 1 OFFSET %s);"
             val = (indice_tarefa,)
             self.cursor.execute(sql, val)
             self.conexao.commit()
