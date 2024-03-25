@@ -10,7 +10,7 @@ class ListTask:
             exit()
 
     def conectar_banco(self):
-        host = 'localhost'
+        host = 'mysql'
         usuario = 'root'
         senha = ''
         banco = 'dblista_tarefa'

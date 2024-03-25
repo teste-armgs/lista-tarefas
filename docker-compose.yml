@@ -10,11 +10,35 @@ services:
       - MYSQL_USER=root
       - MYSQL_PASSWORD=
       - MYSQL_DB=dblista_tarefa
+    tty: true
+    restart: unless-stopped
 
   mysql:
     image: mysql:latest
+    ports:
+      - 3306:3306
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: true
       MYSQL_DATABASE: dblista_tarefa
+
+  migration:
+    image: mysql:latest
+    depends_on:
+      - mysql
     volumes:
-      - ./dblista_tarefa.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./app/sql.sh:/docker-entrypoint-initdb.d/init-db.sh
+      - ./app/wait-for-it.sh:/wait-for-it.sh
+    command: sh /docker-entrypoint-initdb.d/init-db.sh
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: pma
+    links:
+      - mysql
+    environment:
+      - PMA_HOST=db
+      - PMA_PORT=3306
+      - PMA_ARBITRARY=1
+    restart: unless-stopped
+    ports:
+      - 8081:80
