@@ -51,3 +51,7 @@
 **Testes e Refatoração:** Durante todo o processo de desenvolvimento, dedicamos tempo à escrita de testes automatizados. Realizamos testes unitários e de integração regularmente, identificando e corrigindo problemas à medida que surgiam.
 
 **Estruturação dos Casos de Teste:** Um dos principais desafios enfrentados foi estruturar os casos de teste antes do desenvolvimento do programa. Definir claramente o que queríamos testar e como garantir a cobertura adequada das funcionalidades.
+
+# Conclusão
+
+Nós aprendemos a importância de uma abordagem abrangente na estruturação de testes, cobrindo diferentes funcionalidades e cenários de uso do software. A principal dificuldade encontrada foi organizar e priorizar os casos de teste de forma eficiente, especialmente considerando a variedade de funcionalidades e interações possíveis no sistema. A partir disso, é essencial criar uma estratégia de teste que aborde todas as áreas críticas do software, garantindo sua qualidade e funcionamento adequado em diferentes situações.
