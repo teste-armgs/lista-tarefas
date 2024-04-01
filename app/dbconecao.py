@@ -29,9 +29,11 @@ class ListTask:
 
     def finalizar(self, indice_tarefa):
         try:
-            sql = "UPDATE tarefas SET status = 'Concluído' WHERE idtarefa = (SELECT idtarefa FROM tarefas ORDER BY prioridade ASC LIMIT 1 OFFSET %s);"
-            val = (indice_tarefa -1,)
+            self.cursor.execute("CREATE TEMPORARY TABLE temp_tarefas SELECT idtarefa FROM tarefas ORDER BY prioridade ASC;")
+            sql = "UPDATE tarefas SET status = 'Concluído' WHERE idtarefa = (SELECT idtarefa FROM temp_tarefas LIMIT 1 OFFSET %s);"
+            val = (indice_tarefa - 1,)
             self.cursor.execute(sql, val)
+            self.cursor.execute("DROP TEMPORARY TABLE IF EXISTS temp_tarefas;")
             self.conexao.commit()
             print("Tarefa marcada como concluída!")
         except mysql.connector.Error as erro:
